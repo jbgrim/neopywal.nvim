@@ -216,7 +216,7 @@ Below is the error message that we captured:
     local bg1 = U.blend(C.color5, C.background, 0.2)
     local bg2 = U.blend(C.background, C.foreground, 0.75)
     local bg3 = U.blend(C.background, C.foreground, 0.95)
-    file = io.open("~/.cache/wal/transparent_bg_kitty.conf", "w")
+    local file = io.open("~/.cache/wal/transparent_bg_kitty.conf", "w")
     file:write("transparent_background_colors " .. extra_bg .. "@0.85 " .. cursor .. "@0.85 " .. bg1 .. "@0.85 " .. bg2 .. "@0.85 " .. bg3 .. "@0.85")
     file:close()
     os.execute("kitten @ --to unix:/tmp/kitty load-config ~/.cache/wal/transparent_bg_kitty.conf")
