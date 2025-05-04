@@ -211,11 +211,17 @@ Below is the error message that we captured:
     )
 
     local U = require("neopywal.utils.color")
+    local extra_bg = U.darken(C.background, 5)
+    local cursor = U.blend(C.background, C.foreground, 0.9),
+    local file = io.open("~/.cache/wal/transparent_bg_kitty.conf", "w")
+    file:write("transparent_background_colors " .. extra_bg .. "@0.85 " .. cursor .. "@0.85")
+    file:close()
+    os.execute("kitten @ --to unix:/tmp/kitty load-config ~/.cache/wal/transparent_bg_kitty.conf")
     local extra_palette = {
         -- Extras:
-        dim_bg = U.darken(C.background, 5),
+        dim_bg = extra_bg,
         comment = C.color8,
-        cursorline = U.blend(C.background, C.foreground, 0.9),
+        cursorline = cursor,
         directory = C.color4,
 
         -- Diffs:
